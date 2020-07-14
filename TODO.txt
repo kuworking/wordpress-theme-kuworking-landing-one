@@ -1,0 +1,19 @@
+casespetites.com
+- Quan hi hagin molts ítems, he de carregar només 20 de cada categoria via expose posts
+- Fora d'aquests, la resta que quedin com a posts separats els posts, i les entrades res, perdudes, 
+a no ser que vulguem fer alguna pàgina tipus magatzem dels curated
+
+
+aprendelatteart.com
+- Fer versió Gatsby d'aquest theme i fer refactor amb pins i els posts més interessants, i amb ítems per comprar allà mateix
+
+theme affiliates
+- Fer versió amb masonry react-spring
+
+kw
+- convertir el theme en un theme per kw, fer curs i theme
+- fer un theme amb timber/twig
+
+noteize
+- fer aplicació de notes amb nextJS i veure si a vercel hi ha hosting gratuit, sino fer-la amb gatsby
+concepte: que la gent pugui posar notes i imatges, com un trello, però a mode de diari

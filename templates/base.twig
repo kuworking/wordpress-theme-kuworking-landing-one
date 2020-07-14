@@ -1,0 +1,28 @@
+{% block html_head_container %}
+    <!-- REACT script -->
+    {{ add_react() }}
+    <!-- REACT script END -->
+
+    {% include 'html-header.twig' %}
+      {% block head %}
+  	  {% endblock %}
+    </head>
+{% endblock %}
+
+	<body data-template="base.twig">
+	
+    <!-- REACT anchor -->
+    <div id="wp_theme_kuworking"></div>
+    <!-- REACT anchor END -->
+
+    <script>
+    wp_theme_kuworking.acf = {{ expose_acf()|json_encode }}
+    </script>
+
+    {% block content %}
+    ninguna entrada
+    {% endblock %}
+      
+	  {{ function('wp_footer') }}
+	</body>
+</html>
