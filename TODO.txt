@@ -1,3 +1,10 @@
+.
+
+
+
+
+
+
 casespetites.com
 - Quan hi hagin molts ítems, he de carregar només 20 de cada categoria via expose posts
 - Fora d'aquests, la resta que quedin com a posts separats els posts, i les entrades res, perdudes, 
