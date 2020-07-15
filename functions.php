@@ -90,13 +90,40 @@ class StarterSite extends Timber\Site
             function () {
                 $asset_file = include (get_template_directory() . '/build/card.asset.php');
                 wp_enqueue_script(
-                    'wp-theme-kuworking-casespetites',
+                    'wp-theme-kuworking-landing-one',
                     get_template_directory_uri() . '/build/card.js',
                     $asset_file['dependencies'],
                     $asset_file['version']
                 );
             }
         );
+
+        /**
+         * Add a category for gutenberg blocks
+         */
+        add_filter('block_categories', function ($categories, $post) {
+            echo 'holsa';
+            var_dump(array_merge(
+                $categories,
+                array(
+                    array(
+                        'slug' => 'kuworking',
+                        'title' => 'kuworking',
+                        'icon' => '',
+                    ),
+                )
+            ));
+            return array_merge(
+                $categories,
+                array(
+                    array(
+                        'slug' => 'kuworking',
+                        'title' => __( 'kuworking', 'kuworking' ),
+                        'icon' => '',
+                    ),
+                )
+            );
+        }, 10, 2);
 
         /**
          * Add page to be the landing page
@@ -109,7 +136,7 @@ class StarterSite extends Timber\Site
 
                     $new_page_title = 'Home';
                     $new_page_content = '<!-- wp:wp-theme-kuworking-landing-one/header {"placeholder":"Add Description"} -->
-                    
+
                     <!-- /wp:wp-theme-kuworking-landing-one/header -->';
                     $new_page_template = '';
 

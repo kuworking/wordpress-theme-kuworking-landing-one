@@ -23,9 +23,9 @@ export const Hall = () => {
   )
 }
 
-const Header = () => (
+export const Header = () => (
   <div onClick={() => (window.location = '/')}>
-    <h1>Cases Petites</h1>
+    <h1>Cases Petites 2</h1>
   </div>
 )
 

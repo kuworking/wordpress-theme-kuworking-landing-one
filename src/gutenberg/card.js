@@ -2,14 +2,12 @@ import { useEffect, useState } from '@wordpress/element'
 import { registerBlockType } from '@wordpress/blocks'
 import styled from '@emotion/styled'
 
-/**
- * Block for summary, I use the same `text` ACF since this block will not be used at the same time of the other block
- */
+import { Header } from '../components/hall'
 
 registerBlockType('wp-theme-kuworking-landing-one/header', {
-  title: 'Cards Summary Block',
+  title: 'Kuworking Header',
   icon: 'format-aside',
-  category: 'layout',
+  category: 'kuworking',
   attributes: {
     text: { type: 'string' },
   },
@@ -30,7 +28,7 @@ registerBlockType('wp-theme-kuworking-landing-one/header', {
     return (
       <>
         <Grid>
-          <div>Summary text</div>
+          <div>Header</div>
           <Textarea
             placeholder="text"
             className={className}
@@ -38,6 +36,7 @@ registerBlockType('wp-theme-kuworking-landing-one/header', {
             onChange={e => onChangeContent(e, 'text')}
           />
         </Grid>
+        <Header />
       </>
     )
   },
@@ -47,10 +46,10 @@ registerBlockType('wp-theme-kuworking-landing-one/header', {
 /**
  * Block for entering pins
  */
-registerBlockType('wp-theme-kuworking-casespetites/cards', {
-  title: 'Cards Theme Block',
-  icon: 'format-image',
-  category: 'layout',
+registerBlockType('wp-theme-kuworking-landing-one/header2', {
+  title: 'Kuworking Header 22',
+  icon: 'format-aside',
+  category: 'kuworking',
   attributes: {
     code: { type: 'string' },
     text: { type: 'string' },
