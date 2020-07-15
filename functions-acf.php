@@ -1,31 +1,21 @@
 <?php
 
+DEPRECATED
+
 /**
  * ACF custom fields exported php to configure fields here and not in the dashboard
  */
 
 add_action('acf/init', function () {
-    acf_add_local_field_group(array(
+    acf_add_local_field_group([
         'key' => 'group_acf_theme',
         'title' => 'HomePage Use It Through Gutenberg',
         'fields' => [
             [
-                'key' => 'field_kw_theme_grid_code',
+                'key' => 'field_header_title', // JS API getField needs the key
                 'label' => 'Title',
                 'name' => 'header_title',
                 'type' => 'text',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-                'prepend' => '',
-                'append' => '',
-                'maxlength' => '',
             ],
         ],
         'location' => [
@@ -43,12 +33,6 @@ add_action('acf/init', function () {
             ],
             // OR
         ],
-        'menu_order' => 0,
-        'position' => 'normal',
-        'style' => 'default',
-        'label_placement' => 'top',
-        'instruction_placement' => 'label',
-        'active' => true,
-    ));
+    ]);
 
 });

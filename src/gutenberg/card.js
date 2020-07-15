@@ -2,118 +2,55 @@ import { useEffect, useState } from '@wordpress/element'
 import { registerBlockType } from '@wordpress/blocks'
 import styled from '@emotion/styled'
 
-import { Header } from '../components/hall'
+import { HallGutenberg } from '../components/hall'
 
-registerBlockType('wp-theme-kuworking-landing-one/header', {
-  title: 'Kuworking Header',
+registerBlockType('wp-theme-kuworking-landing-one/landing', {
+  title: 'Kuworking Landing',
   icon: 'format-aside',
   category: 'kuworking',
   attributes: {
-    text: { type: 'string' },
+    header_h1: { type: 'string' },
+    header_h2_0: { type: 'string' },
+    header_h2_1: { type: 'string' },
   },
   edit: ({ attributes, setAttributes, className }) => {
-    const fields = {
-      text: acf.getField('field_kw_theme_grid_text'),
-    }
-
     const onChangeContent = (newContent, part) => {
-      fields[part].val(newContent.target.value)
-      setAttributes({
-        text: part === 'text' ? newContent.target.value : attributes.text,
-      })
-    }
+      // update fields
+      //      fields[part].val(newContent.target.value)
 
-    const getValue = part => attributes[part] || fields[part].val()
+      // update attributes
+      setAttributes({ ...attributes, [part]: newContent.target.value })
+      //      setAttributes({
+      //        text: part === 'text' ? newContent.target.value : attributes.text,
+      //      })
+    }
 
     return (
       <>
         <Grid>
           <div>Header</div>
-          <Textarea
-            placeholder="text"
-            className={className}
-            value={getValue('text')}
-            onChange={e => onChangeContent(e, 'text')}
-          />
-        </Grid>
-        <Header />
-      </>
-    )
-  },
-  save: () => null,
-})
-
-/**
- * Block for entering pins
- */
-registerBlockType('wp-theme-kuworking-landing-one/header2', {
-  title: 'Kuworking Header 22',
-  icon: 'format-aside',
-  category: 'kuworking',
-  attributes: {
-    code: { type: 'string' },
-    text: { type: 'string' },
-  },
-  edit: ({ attributes, setAttributes, className }) => {
-    const [changed, setChanged] = useState({})
-
-    const fields = {
-      code: acf.getField('field_kw_theme_grid_code'),
-      text: acf.getField('field_kw_theme_grid_text'),
-    }
-
-    const onChangeContent = (newContent, part) => {
-      // update the acf field
-      fields[part].val(newContent.target.value)
-
-      // update the state here
-      setAttributes({
-        code: part === 'code' ? newContent.target.value : attributes.code,
-        text: part === 'text' ? newContent.target.value : attributes.text,
-      })
-      setChanged({})
-    }
-
-    // get value from the attributes, and if not yet stored, from the acf field
-    const getValue = part => attributes[part] || fields[part].val()
-
-    const type = getValue('code')
-      ? (getValue('code').indexOf('pinterest') >= 0 && 'pinterest') ||
-        (getValue('code').indexOf('instagram') >= 0 && 'instagram') ||
-        (getValue('code').indexOf('youtube') >= 0 && 'youtube') ||
-        'text'
-      : 'text'
-
-    return (
-      <>
-        <Grid>
-          <div>Embed code from Pinterest, Instagram or Youtube</div>
           <Input
-            placeholder="embed code"
+            placeholder="Title"
             className={className}
-            value={getValue('code')}
-            onChange={e => onChangeContent(e, 'code')}
+            value={attributes['header_h1']}
+            onChange={e => onChangeContent(e, 'header_h1')}
           />
-          <div>Text (optional)</div>
-          <Textarea
-            placeholder="text"
+          <div>SubHeader 1</div>
+          <Input
+            placeholder="Title"
             className={className}
-            value={getValue('text')}
-            onChange={e => onChangeContent(e, 'text')}
+            value={attributes['header_h2_0']}
+            onChange={e => onChangeContent(e, 'header_h2_0')}
+          />
+          <div>SubHeader 2</div>
+          <Input
+            placeholder="Title"
+            className={className}
+            value={attributes['header_h2_1']}
+            onChange={e => onChangeContent(e, 'header_h2_1')}
           />
         </Grid>
-
-        <Container>
-          <Card
-            post={{
-              acf: {
-                code: getValue('code'),
-                text: getValue('text'),
-              },
-            }}
-            type={type}
-          />
-        </Container>
+        <HallGutenberg attributes={attributes} />
       </>
     )
   },

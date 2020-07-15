@@ -1,39 +1,65 @@
 const { useEffect, useState } = wp.element
+import { Global, css } from '@emotion/core'
 import styled from '@emotion/styled'
+import { useReplace100vh } from '../hooks/usereplace100vh'
+
+const globalStyles = `
+background-color: #ff4d00;
+font-family: 'Open Sans';
+font-size: 14px;
+`
+
+const GlobalStyles = () => (
+  <Global
+    styles={css`
+      body {
+        ${globalStyles}
+      }
+    `}
+  />
+)
 
 export const Hall = () => {
-  const [{ header, posts, entrades, post, user, user_posts }, setWp] = useState({
-    header: {},
-    posts: null,
-    entrades: null,
-    post: null,
-    user: {},
-    user_posts: [],
-  })
+  useReplace100vh()
+
+  const [{ attrs: attributes }, setWp] = useState({})
 
   useEffect(() => {
-    setWp(wp_theme_kuworking)
+    setWp(wp_theme_kuworking.blocks[0])
     console.log(wp_theme_kuworking)
   }, [])
 
+  const { header_h1, header_h2_0, header_h2_1 } = attributes ? attributes : {}
+
   return (
     <Container>
-      <Header />
+      <GlobalStyles />
+      {attributes && <Header content={[header_h1, header_h2_0, header_h2_1]} />}
     </Container>
   )
 }
 
-export const Header = () => (
+export const HallGutenberg = ({ attributes }) => {
+  const { header_h1, header_h2_0, header_h2_1 } = attributes
+  return (
+    <Container gutenberg="1">
+      <Header content={[header_h1, header_h2_0, header_h2_1]} />
+    </Container>
+  )
+}
+
+const Header = ({ content: [header_h1, header_h2_0, header_h2_1] }) => (
   <div onClick={() => (window.location = '/')}>
-    <h1>Cases Petites 2</h1>
+    <h1>{header_h1}</h1>
+    <h2>{header_h2_0}</h2>
+    <h2>{header_h2_1}</h2>
   </div>
 )
 
 const Container = styled.div`
+  ${props => (props.gutenberg ? globalStyles : '')}
   display: flex;
   flex-direction: column;
-  max-width: ${props => (props.post ? '800' : '1200')}px;
-  width: calc(100% - 20px);
   align-self: center;
 
   & > div:nth-of-type(1) {
@@ -45,12 +71,13 @@ const Container = styled.div`
 
     & > h1 {
       font-family: 'Encode Sans Condensed', sans-serif;
+      color: #fff;
+
       text-align: center;
-      font-weight: unset;
       font-size: 80px;
+      font-weight: 900;
       width: auto;
-      text-transform: uppercase;
-      margin: 0;
+      margin: 40px 0px;
     }
   }
 `

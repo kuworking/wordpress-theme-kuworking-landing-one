@@ -66,7 +66,7 @@ if (!is_admin()) {
 /**
  * Include ACF code to configure custom fields for this theme
  */
-include_once get_template_directory() . '/functions-acf.php';
+//include_once get_template_directory() . '/functions-acf.php';
 
 /**
  * We're going to configure our theme inside of a subclass of Timber\Site
@@ -83,7 +83,7 @@ class StarterSite extends Timber\Site
         parent::__construct();
 
         /**
-         * Register block type to manage input of ACF
+         * Register block type to manage input of Gutenberg Blocks
          */
         add_action(
             'enqueue_block_editor_assets',
@@ -102,23 +102,12 @@ class StarterSite extends Timber\Site
          * Add a category for gutenberg blocks
          */
         add_filter('block_categories', function ($categories, $post) {
-            echo 'holsa';
-            var_dump(array_merge(
-                $categories,
-                array(
-                    array(
-                        'slug' => 'kuworking',
-                        'title' => 'kuworking',
-                        'icon' => '',
-                    ),
-                )
-            ));
             return array_merge(
                 $categories,
                 array(
                     array(
                         'slug' => 'kuworking',
-                        'title' => __( 'kuworking', 'kuworking' ),
+                        'title' => 'kuworking',
                         'icon' => '',
                     ),
                 )
@@ -132,15 +121,13 @@ class StarterSite extends Timber\Site
             'init',
             function () {
                 if (isset($_GET['activated']) && is_admin()) {
-                    var_dump(isset($page_check->ID));
-
                     $new_page_title = 'Home';
-                    $new_page_content = '<!-- wp:wp-theme-kuworking-landing-one/header {"placeholder":"Add Description"} -->
-
-                    <!-- /wp:wp-theme-kuworking-landing-one/header -->';
+                    $new_page_content = '<!-- wp:wp-theme-kuworking-landing-one/landing {"placeholder":""} -->
+                    <!-- /wp:wp-theme-kuworking-landing-one/landing -->';
                     $new_page_template = '';
 
                     $page_check = get_page_by_title($new_page_title);
+
                     $new_page = [
                         'post_type' => 'page',
                         'post_title' => $new_page_title,
@@ -148,7 +135,7 @@ class StarterSite extends Timber\Site
                         'post_status' => 'publish',
                         'post_author' => 1,
                     ];
-                    if (isset($page_check->ID)) {
+                    if (!isset($page_check->ID)) {
                         $new_page_id = wp_insert_post($new_page);
                         if (!empty($new_page_template)) {
                             update_post_meta($new_page_id, '_wp_page_template', $new_page_template);
@@ -226,6 +213,9 @@ class StarterSite extends Timber\Site
         );
 
         add_theme_support('menus');
+
+        add_theme_support('editor-styles'); // add custom styles for gutenberg editor
+        add_editor_style( 'style.css' ); // I use the same stylesheet than the theme one
     }
 
     /** This is where you can add your own functions to twig.
@@ -247,11 +237,9 @@ class StarterSite extends Timber\Site
         /**
          * Expose the pertinent custom fields
          */
-        $twig->addFunction(new Timber\Twig_Function('expose_acf', function () {
+        $twig->addFunction(new Timber\Twig_Function('expose_blocks', function () {
             $page_check = get_page_by_title('Home');
-            return [
-                'header_title' => get_field('header_title', $page_check->ID),
-            ];
+            return parse_blocks($page_check->post_content);
         }));
         return $twig;
     }
