@@ -2,9 +2,11 @@ const { useEffect, useState } = wp.element
 import { Global, css } from '@emotion/core'
 import styled from '@emotion/styled'
 import { useReplace100vh } from '../hooks/usereplace100vh'
+import { Header } from './header'
+import { Image } from './image'
 
 const globalStyles = `
-background-color: #ff4d00;
+background-color: #f36451;
 font-family: 'Open Sans';
 font-size: 14px;
 `
@@ -29,55 +31,48 @@ export const Hall = () => {
     console.log(wp_theme_kuworking)
   }, [])
 
-  const { header_h1, header_h2_0, header_h2_1 } = attributes ? attributes : {}
+  if (!attributes) return <></>
 
   return (
-    <Container>
+    <>
       <GlobalStyles />
-      {attributes && <Header content={[header_h1, header_h2_0, header_h2_1]} />}
-    </Container>
+      <Components attributes={attributes} />
+    </>
   )
 }
 
-export const HallGutenberg = ({ attributes }) => {
-  const { header_h1, header_h2_0, header_h2_1 } = attributes
-  return (
-    <Container gutenberg="1">
-      <Header content={[header_h1, header_h2_0, header_h2_1]} />
-    </Container>
-  )
-}
-
-const Header = ({ content: [header_h1, header_h2_0, header_h2_1] }) => (
-  <div onClick={() => (window.location = '/')}>
-    <h1>{header_h1}</h1>
-    <h2>{header_h2_0}</h2>
-    <h2>{header_h2_1}</h2>
-  </div>
+export const HallGutenberg = ({ attributes }) => (
+  <Body>
+    <Components attributes={attributes} />
+  </Body>
 )
 
+const Components = ({ attributes }) => {
+  const { header_h1, header_h2_0, header_h2_1, image_0, theme_link } = attributes
+  return (
+    <>
+      <Container>
+        <Header content={[header_h1, header_h2_0, header_h2_1]} />
+      </Container>
+      <Container>
+        <Image src={`${theme_link}${image_0}`} />
+      </Container>
+    </>
+  )
+}
+
 const Container = styled.div`
-  ${props => (props.gutenberg ? globalStyles : '')}
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   align-self: center;
+  flex-grow: 1;
+  justify-content: center;
+`
 
-  & > div:nth-of-type(1) {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: ${props => (props.post ? '40' : '0')}px;
-    cursor: pointer;
-
-    & > h1 {
-      font-family: 'Encode Sans Condensed', sans-serif;
-      color: #fff;
-
-      text-align: center;
-      font-size: 80px;
-      font-weight: 900;
-      width: auto;
-      margin: 40px 0px;
-    }
-  }
+const Body = styled.div`
+  ${globalStyles}
+  display: flex;
+  flex-direction: column;
 `

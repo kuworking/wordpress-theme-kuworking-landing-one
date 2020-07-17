@@ -1,4 +1,4 @@
-import { useEffect, useState } from '@wordpress/element'
+import { useEffect } from '@wordpress/element'
 import { registerBlockType } from '@wordpress/blocks'
 import styled from '@emotion/styled'
 
@@ -9,45 +9,57 @@ registerBlockType('wp-theme-kuworking-landing-one/landing', {
   icon: 'format-aside',
   category: 'kuworking',
   attributes: {
-    header_h1: { type: 'string' },
-    header_h2_0: { type: 'string' },
-    header_h2_1: { type: 'string' },
+    header_h1: { type: 'string', default: '' },
+    header_h2_0: { type: 'string', default: '' },
+    header_h2_1: { type: 'string', default: '' },
+    image_0: { type: 'string', default: '' },
+    theme_link: { type: 'string', default: '' },
   },
   edit: ({ attributes, setAttributes, className }) => {
-    const onChangeContent = (newContent, part) => {
-      // update fields
-      //      fields[part].val(newContent.target.value)
-
-      // update attributes
-      setAttributes({ ...attributes, [part]: newContent.target.value })
-      //      setAttributes({
-      //        text: part === 'text' ? newContent.target.value : attributes.text,
-      //      })
-    }
-
+    const onChangeContent = (newContent, part) => setAttributes({ ...attributes, [part]: newContent.target.value })
+    useEffect(() => {
+      const initialAttributes = {
+        header_h1: 'Landing ONE',
+        header_h2_0: 'WordPress Theme',
+        header_h2_1: 'Written in React',
+        image_0: '/image.jpg',
+        theme_link:
+          'http://kuworking-themes-workspace.test/wp-content/themes/wordpress-theme-kuworking-landing-one/static',
+      }
+      const defaultAttributes = {}
+      for (const a in attributes) defaultAttributes[a] = attributes[a] || initialAttributes[a]
+      setAttributes(defaultAttributes)
+    }, [])
     return (
       <>
         <Grid>
           <div>Header</div>
           <Input
-            placeholder="Title"
+            placeholder="Add text..."
             className={className}
             value={attributes['header_h1']}
             onChange={e => onChangeContent(e, 'header_h1')}
           />
           <div>SubHeader 1</div>
           <Input
-            placeholder="Title"
+            placeholder="Add text..."
             className={className}
             value={attributes['header_h2_0']}
             onChange={e => onChangeContent(e, 'header_h2_0')}
           />
           <div>SubHeader 2</div>
           <Input
-            placeholder="Title"
+            placeholder="Add text..."
             className={className}
             value={attributes['header_h2_1']}
             onChange={e => onChangeContent(e, 'header_h2_1')}
+          />
+          <div>Image from the static folder [url: /image.jpg refers to /static/image.jpg ]</div>
+          <Input
+            placeholder="Add image url"
+            className={className}
+            value={attributes['image_0']}
+            onChange={e => onChangeContent(e, 'image_0')}
           />
         </Grid>
         <HallGutenberg attributes={attributes} />
@@ -92,17 +104,5 @@ const Textarea = styled.textarea`
     min-height: 100px;
     font-size: 16px;
     font-family: 'Open Sans';
-  }
-`
-
-const Container = styled.div`
-  margin-top: 40px;
-  background: rgb(242, 242, 242);
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-
-  & > a {
-    width: 100%;
   }
 `

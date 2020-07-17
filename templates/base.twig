@@ -1,28 +1,23 @@
 {% block html_head_container %}
-    <!-- REACT script -->
-    {{ add_react() }}
-    <!-- REACT script END -->
+	<!-- REACT script -->
+	{{ add_react() }}
+	<!-- REACT script END -->
 
-    {% include 'html-header.twig' %}
-      {% block head %}
-  	  {% endblock %}
-    </head>
+	{% include 'html-header.twig' %}
+	{% block head %}{% endblock %}
+</head>{% endblock %}<body
+data-template="base.twig">
+
+<!-- REACT anchor -->
+<div id="wp_theme_kuworking"></div>
+<!-- REACT anchor END -->
+
+<script>
+	wp_theme_kuworking.blocks = {{ expose_blocks()|json_encode }}
+</script>
+
+{% block content %}
+	ninguna entrada
 {% endblock %}
 
-	<body data-template="base.twig">
-	
-    <!-- REACT anchor -->
-    <div id="wp_theme_kuworking"></div>
-    <!-- REACT anchor END -->
-
-    <script>
-    wp_theme_kuworking.blocks = {{ expose_blocks()|json_encode }}
-    </script>
-
-    {% block content %}
-    ninguna entrada
-    {% endblock %}
-      
-	  {{ function('wp_footer') }}
-	</body>
-</html>
+{{ function('wp_footer') }}</body></html>

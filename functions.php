@@ -215,7 +215,7 @@ class StarterSite extends Timber\Site
         add_theme_support('menus');
 
         add_theme_support('editor-styles'); // add custom styles for gutenberg editor
-        add_editor_style( 'style.css' ); // I use the same stylesheet than the theme one
+        add_editor_style('style.css'); // I use the same stylesheet than the theme one
     }
 
     /** This is where you can add your own functions to twig.
@@ -240,6 +240,18 @@ class StarterSite extends Timber\Site
         $twig->addFunction(new Timber\Twig_Function('expose_blocks', function () {
             $page_check = get_page_by_title('Home');
             return parse_blocks($page_check->post_content);
+        }));
+
+        /**
+         * expose site information
+         */
+        $twig->addFunction(new Timber\Twig_Function('expose_header', function ($site) {
+            return [
+                'url' => $site->url,
+                'site_url' => $site->site_url,
+                'name' => $site->name,
+                'theme_link' => get_stylesheet_directory_uri(),
+            ];
         }));
         return $twig;
     }
