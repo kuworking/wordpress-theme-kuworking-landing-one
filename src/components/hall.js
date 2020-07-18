@@ -7,7 +7,7 @@ import { Image } from './image'
 
 const globalStyles = `
 background-color: #f36451;
-font-family: 'Open Sans';
+font-family: 'Handlee', handwriting;
 font-size: 14px;
 `
 
@@ -51,25 +51,18 @@ const Components = ({ attributes }) => {
   const { header_h1, header_h2_0, header_h2_1, image_0, theme_link } = attributes
   return (
     <>
-      <Container>
-        <Header content={[header_h1, header_h2_0, header_h2_1]} />
-      </Container>
-      <Container>
-        <Image src={`${theme_link}${image_0}`} />
-      </Container>
+      <Header content={[header_h1, header_h2_0, header_h2_1]} />
+      <Image src={`${theme_link}${image_0}`} icon={`${theme_link}/icon.svg`}>
+        <div>Lorem ipsum dolor sit amet consectetur adipiscing elit mauris</div>
+        <div>Luctus aliquet nascetur potenti tortor</div>
+        <div>
+          Velit etiam dis libero consequat class a sociis fames, habitant varius porta conubia mi id vehicula morbi
+          lectus, porttitor mus cum viverra tellus convallis gravida
+        </div>
+      </Image>
     </>
   )
 }
-
-const Container = styled.div`
-  min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 100);
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  flex-grow: 1;
-  justify-content: center;
-`
 
 const Body = styled.div`
   ${globalStyles}
