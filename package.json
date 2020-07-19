@@ -8,7 +8,7 @@
   "scripts": {
     "start": "wp-scripts start",
     "build": "wp-scripts build",
-    "zip": "node zip.js"
+    "zip": "node zip.js wordpress-theme-kuworking-landing-one"
   },
   "repository": {
     "type": "git",
