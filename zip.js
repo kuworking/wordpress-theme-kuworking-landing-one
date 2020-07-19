@@ -12,8 +12,9 @@ function getWeek() {
 
 // create a file to stream archive data to.
 
-var year_week = getWeek()
-var output = fs.createWriteStream(__dirname + '/' + getWeek() + '_theme.zip')
+var name = __dirname + '/wordpress-theme-kuworking-landing-one.zip'
+var name2 = __dirname + '/wordpress-theme-kuworking-landing-one.' + getWeek() + 'zip'
+var output = fs.createWriteStream(name)
 var archive = archiver('zip', {
   zlib: { level: 9 }, // Sets the compression level.
 })
@@ -23,6 +24,10 @@ var archive = archiver('zip', {
 output.on('close', function () {
   console.log(archive.pointer() + ' total bytes')
   console.log('archiver has been finalized and the output file descriptor has closed.')
+  fs.copyFile(name, name2, err => {
+    if (err) throw err
+    console.log('zip duplicated')
+  })
 })
 
 // This event is fired when the data source is drained no matter what was the data source.
