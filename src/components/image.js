@@ -12,18 +12,28 @@ export const Image = ({ src, icon, children }) => (
   </Background>
 )
 
+const q = px => `@media (min-width: ${px}px)`
+
 const Div = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
+  ${q(600)} {
+    grid-template-columns: 2fr 1fr;
+  }
+
   max-width: 800px;
   margin-top: 300px;
   font-size: 20px;
   color: #fff;
+  padding: 10px;
+  ${q(600)} {
+    padding: 40px;
+  }
 
   & > div:nth-of-type(1) {
     & img {
-      width: 400px;
-      height: 424px;
+      max-width: 400px;
+      max-height: 424px;
     }
   }
 
@@ -35,6 +45,12 @@ const Div = styled.div`
       font-size: 40px;
       font-weight: 700;
       line-height: 1;
+    }
+    & > div:nth-of-type(3) {
+      margin-bottom: 200px;
+      ${q(600)} {
+        margin-bottom: unset;
+      }
     }
   }
 `
