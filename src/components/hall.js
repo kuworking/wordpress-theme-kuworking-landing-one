@@ -48,17 +48,14 @@ export const HallGutenberg = ({ attributes }) => (
 )
 
 const Components = ({ attributes }) => {
-  const { header_h1, header_h2_0, header_h2_1, image_0, theme_link } = attributes
+  const { header_h1, header_h2_0, header_h2_1, image_0, theme_link, text_0, text_1, text_2 } = attributes
   return (
     <>
       <Header content={[header_h1, header_h2_0, header_h2_1]} />
       <Image src={`${theme_link}${image_0}`} icon={`${theme_link}/icon.svg`}>
-        <div>Lorem ipsum dolor sit amet consectetur adipiscing elit mauris</div>
-        <div>Luctus aliquet nascetur potenti tortor</div>
-        <div>
-          Velit etiam dis libero consequat class a sociis fames, habitant varius porta conubia mi id vehicula morbi
-          lectus, porttitor mus cum viverra tellus convallis gravida
-        </div>
+        <div>{text_0}</div>
+        <div>{text_1}</div>
+        <div>{text_2}</div>
       </Image>
     </>
   )

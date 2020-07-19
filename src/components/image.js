@@ -2,7 +2,7 @@ const {} = wp.element
 import styled from '@emotion/styled'
 
 export const Image = ({ src, icon, children }) => (
-  <Background src={src}>
+  <Background src={src} id="second_block_start">
     <Div>
       <div>
         <img src={icon} alt="" />
@@ -19,6 +19,13 @@ const Div = styled.div`
   margin-top: 300px;
   font-size: 20px;
   color: #fff;
+
+  & > div:nth-of-type(1) {
+    & img {
+      width: 400px;
+      height: 424px;
+    }
+  }
 
   & > div:nth-of-type(2) {
     & div {
