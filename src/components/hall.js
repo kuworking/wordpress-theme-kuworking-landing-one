@@ -28,7 +28,6 @@ export const Hall = () => {
 
   useEffect(() => {
     setWp(wp_theme_kuworking.blocks[0])
-    console.log(wp_theme_kuworking)
   }, [])
 
   if (!attributes) return <></>
