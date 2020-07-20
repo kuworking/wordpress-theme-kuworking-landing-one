@@ -54,7 +54,6 @@ Timber::$dirname = array('templates', 'views');
 Timber::$autoescape = false;
 
 /**
- * 2020.06.13
  * Deregister jQuery
  */
 if (!is_admin()) {
@@ -62,11 +61,6 @@ if (!is_admin()) {
         wp_deregister_script('jquery');
     }, 11);
 }
-
-/**
- * Include ACF code to configure custom fields for this theme
- */
-//include_once get_template_directory() . '/functions-acf.php';
 
 /**
  * We're going to configure our theme inside of a subclass of Timber\Site
@@ -154,7 +148,6 @@ class StarterSite extends Timber\Site
      */
     public function add_to_context($context)
     {
-        $context['menu'] = new Timber\Menu();
         $context['site'] = $this;
 
         return $context;
@@ -232,14 +225,6 @@ class StarterSite extends Timber\Site
                 '0.01'
             );
             wp_enqueue_script('kw-react');
-        }));
-
-        /**
-         * Expose the pertinent custom fields
-         */
-        $twig->addFunction(new Timber\Twig_Function('expose_blocks', function () {
-            $page_check = get_page_by_title('Home');
-            return parse_blocks($page_check->post_content);
         }));
 
         /**
