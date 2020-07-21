@@ -15,6 +15,7 @@
  * plug-in, you can safely delete this block.
  */
 $composer_autoload = __DIR__ . '/vendor/autoload.php';
+
 if (file_exists($composer_autoload)) {
     require_once $composer_autoload;
     $timber = new Timber\Timber();
@@ -228,16 +229,13 @@ class StarterSite extends Timber\Site
         }));
 
         /**
-         * expose site information
+         * Expose Gutenberg blocks
          */
-        $twig->addFunction(new Timber\Twig_Function('expose_header', function ($site) {
-            return [
-                'url' => $site->url,
-                'site_url' => $site->site_url,
-                'name' => $site->name,
-                'theme_link' => get_stylesheet_directory_uri(),
-            ];
+         $twig->addFunction(new Timber\Twig_Function('expose_blocks', function () {
+            $page_check = get_page_by_title('Home');
+            return parse_blocks($page_check->post_content);
         }));
+
         return $twig;
     }
 }
