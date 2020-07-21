@@ -231,7 +231,7 @@ class StarterSite extends Timber\Site
         /**
          * Expose Gutenberg blocks
          */
-         $twig->addFunction(new Timber\Twig_Function('expose_blocks', function () {
+        $twig->addFunction(new Timber\Twig_Function('expose_blocks', function () {
             $page_check = get_page_by_title('Home');
             return parse_blocks($page_check->post_content);
         }));
