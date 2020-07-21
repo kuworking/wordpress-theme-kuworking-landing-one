@@ -57,6 +57,7 @@ archive.pipe(output)
 
 // append files from a sub-directory and naming it `new-subdir` within the archive
 archive.directory('src/', 'src')
+archive.directory('vendor/', 'vendor')
 archive.directory('build/', 'build')
 archive.directory('static/', 'static')
 archive.directory('templates/', 'templates')

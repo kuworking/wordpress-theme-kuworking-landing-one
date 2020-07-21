@@ -9,6 +9,7 @@ WordPress theme written in React and @emotion
 - Activate it
 - Go to Pages, open `Home` and change text
 - Update it
+*You need to update it at least one to see the default text in the website
 - Visit page
 
 # About
