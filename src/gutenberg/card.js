@@ -4,6 +4,9 @@ import styled from '@emotion/styled'
 
 import { HallGutenberg } from '../components/hall'
 
+// change the theme folder name if needed
+const theme_link = '/wp-content/themes/wordpress-theme-kuworking-landing-one/static'
+
 registerBlockType('wp-theme-kuworking-landing-one/landing', {
   title: 'Kuworking Landing',
   icon: 'format-aside',
@@ -40,8 +43,8 @@ registerBlockType('wp-theme-kuworking-landing-one/landing', {
         text_1: 'Luctus aliquet nascetur potenti tortor',
         text_2:
           'Velit etiam dis libero consequat class a sociis fames, habitant varius porta conubia mi id vehicula morbi lectus, porttitor mus cum viverra tellus convallis gravida',
-        theme_link: '/wp-content/themes/wordpress-theme-kuworking-landing-one/static',
-      }
+          theme_link: theme_link,
+        }
       const defaultAttributes = {}
       for (const a in attributes) defaultAttributes[a] = attributes[a] || initialAttributes[a]
       setAttributes(defaultAttributes)
