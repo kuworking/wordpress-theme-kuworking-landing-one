@@ -1,3 +1,6 @@
+// version 0.1
+var themeName = '/wordpress-theme-kuworking-landing-one'
+
 // require modules
 var fs = require('fs')
 var archiver = require('archiver')
@@ -12,8 +15,8 @@ function getWeek() {
 
 // create a file to stream archive data to.
 
-var name = __dirname + '/wordpress-theme-kuworking-landing-one.zip'
-var name2 = __dirname + '/wordpress-theme-kuworking-landing-one.' + getWeek() + '.zip'
+var name = __dirname + themeName + '.zip'
+var name2 = __dirname + themeName + '.' + getWeek() + '.zip'
 var output = fs.createWriteStream(name)
 var archive = archiver('zip', {
   zlib: { level: 9 }, // Sets the compression level.
