@@ -5,9 +5,9 @@ import styled from '@emotion/styled'
 import { HallGutenberg } from '../components/hall'
 
 // change the theme folder name if needed
-const theme_link = '/wp-content/themes/wordpress-theme-kuworking-landing-one/static'
+const theme_link = '/wp-content/themes/wordpress-theme-kuworking-landing-three/static'
 
-registerBlockType('wp-theme-kuworking-landing-one/landing', {
+registerBlockType('wp-theme-kuworking-landing-three/landing', {
   title: 'Kuworking Landing',
   icon: 'format-aside',
   category: 'kuworking',

@@ -1,5 +1,5 @@
 // version 0.1
-var themeName = '/wordpress-theme-kuworking-landing-one'
+var themeName = '/wordpress-theme-kuworking-landing-three'
 
 // require modules
 var fs = require('fs')

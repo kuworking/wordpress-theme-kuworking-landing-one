@@ -1,6 +1,6 @@
 {
-  "name": "kuworking/wordpress-theme-kuworking-landing-one",
-  "description": "wordpress theme kuworking landing one",
+  "name": "kuworking/wordpress-theme-kuworking-landing-three",
+  "description": "wordpress theme kuworking landing three",
   "type":"wordpress-theme",
   "minimum-stability" : "stable",
   "repositories": [
