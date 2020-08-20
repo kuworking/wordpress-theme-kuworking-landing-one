@@ -1,6 +1,6 @@
 {
   "name": "wordpress-theme-kuworking-landing-three",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "wordpress-theme-kuworking-landing-three",
   "main": "index.js",
   "author": "kuworking.com",
@@ -15,6 +15,8 @@
     "url": "https://github.com/kuworking/wordpress-theme-kuworking-landing-three.git"
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "7.10.4",
+    "@babel/preset-react": "7.10.4",
     "@wordpress/scripts": "10.0.0",
     "archiver": "^4.0.1",
     "babel-eslint": "10.1.0",
@@ -27,11 +29,13 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-standard": "4.0.1",
+    "file-loader": "6.0.0",
     "prettier": "2.0.5",
     "prettier-plugin-twig-melody": "0.4.6"
   },
   "dependencies": {
     "@emotion/core": "10.0.28",
-    "@emotion/styled": "10.0.27"
+    "@emotion/styled": "10.0.27",
+    "@kuworking/block-landing-three": "0.2.7"
   }
 }

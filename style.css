@@ -2,23 +2,11 @@
  * Theme Name: wp-theme-kuworking-landing-three
  * Description: wp-theme-kuworking-landing-three
  * Author: Kuworking
+ * Author URI: https://www.kuworking.com
+ * Version: 0.0.1
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Handlee&display=swap');
-
-body {
-  overflow-y: scroll;
-  /* overflow to prevent ethernal loop with masonry */
-  margin: 0;
-}
-
-#wp_theme_kuworking {
-  display: flex;
-  flex-direction: column;
-}
-
 /* For gutenberg styles */
-.wp-block[data-type="wp-theme-kuworking-landing-three/landing"]{
+.wp-block[data-type='wp-theme-kuworking-landing-three/landing'] {
   max-width: 100%;
 }
-

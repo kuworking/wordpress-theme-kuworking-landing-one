@@ -5,7 +5,8 @@ import styled from '@emotion/styled'
 import { HallGutenberg } from '../components/hall'
 
 // change the theme folder name if needed
-const theme_link = '/wp-content/themes/wordpress-theme-kuworking-landing-three/static'
+const folder = '/wp-content/themes/wordpress-theme-kuworking-landing-three/static'
+const fonts = '/wp-content/themes/wordpress-theme-kuworking-landing-three/build'
 
 registerBlockType('wp-theme-kuworking-landing-three/landing', {
   title: 'Kuworking Landing',
@@ -20,14 +21,16 @@ registerBlockType('wp-theme-kuworking-landing-three/landing', {
     text_0: { type: 'string', default: '' },
     text_1: { type: 'string', default: '' },
     text_2: { type: 'string', default: '' },
-    theme_link: { type: 'string', default: '' },
+    folder: { type: 'string', default: '' },
+    fonts: { type: 'string', default: '' },
+    wordpress: { type: 'string', default: '' },
   },
   edit: ({ attributes, setAttributes, className }) => {
     const onChangeContent = (newContent, part) => setAttributes({ ...attributes, [part]: newContent.target.value })
     const Icon = () => (
       <img
         style={{ width: '25px', height: '25px', marginRight: '10px' }}
-        src={attributes.theme_link + '/accept.svg'}
+        src={attributes.folder + '/accept.svg'}
         alt="emoji"
       />
     )
@@ -43,8 +46,10 @@ registerBlockType('wp-theme-kuworking-landing-three/landing', {
         text_1: 'Luctus aliquet nascetur potenti tortor',
         text_2:
           'Velit etiam dis libero consequat class a sociis fames, habitant varius porta conubia mi id vehicula morbi lectus, porttitor mus cum viverra tellus convallis gravida',
-          theme_link: theme_link,
-        }
+        folder: folder,
+        fonts: fonts,
+        wordpress: true,
+      }
       const defaultAttributes = {}
       for (const a in attributes) defaultAttributes[a] = attributes[a] || initialAttributes[a]
       setAttributes(defaultAttributes)
